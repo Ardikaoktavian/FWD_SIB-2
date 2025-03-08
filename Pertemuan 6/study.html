@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RWD - MyStudy</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img
+          src="./assets/images/logo nf.png"
+          alt="Logo"
+          width="40"
+          height="40"
+          class="me-2"
+        />
+        <strong>Sekolah Tinggi Teknologi Terpadu Nurul Fikri</strong>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="study.html">MyStudy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="datatables.html">Datatable</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="container my-4">
+    <h2>Riwayat Pendidikan</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Jenjang</th>
+          <th>Institusi</th>
+          <th>Tahun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SMA</td>
+          <td>SMA Kartika VIII-1 Jakarta</td>
+          <td>2019 - 2022</td>
+        </tr>
+        <tr>
+          <td>S1</td>
+          <td>Sekolah Tinggi Teknologi Terpadu Nurul Fikri</td>
+          <td>2022 - 2026 </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="index.html" class="btn btn-primary">Kembali ke Index</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-light py-3 border-top text-center">
+    <p class="mb-0">
+      &copy; 2025 - Dibuat oleh <strong>Ardika Oktavian</strong>.
+    </p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+</body>
+</html>

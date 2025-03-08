@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RWD - Datatables</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- DataTables CSS (CDN) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
+  />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img
+          src="./assets/images/logo nf.png"
+          alt="Logo"
+          width="40"
+          height="40"
+          class="me-2"
+        />
+        <strong>Sekolah Tinggi Teknologi Terpadu Nurul Fikri</strong>
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="study.html">MyStudy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="datatables.html">Datatable</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="container my-4">
+    <h2>Data Koruptor Indonesia</h2>
+    <table id="myTable" class="display table table-striped">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Jabatan</th>
+          <th>Umur</th>
+          <th>Kasus Korupsi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Setya Novanto</td>
+          <td>Mantan Ketua DPR RI</td>
+          <td>68</td>
+          <td>Korupsi Proyek e-KTP</td>
+        </tr>
+        <tr>
+          <td>Ratu Atut Chosiyah</td>
+          <td>Mantan Gubernur Banten</td>
+          <td>61</td>
+          <td>Korupsi Dana Transfer</td>
+        </tr>
+        <tr>
+          <td>Patrialis Akbar</td>
+          <td>Mantan Hakim MK</td>
+          <td>64</td>
+          <td>Korupsi di Lembaga Peradilan</td>
+        </tr>
+        <tr>
+          <td>Gayus Tambunan</td>
+          <td>Mantan Pegawai Pajak</td>
+          <td>44</td>
+          <td>Manipulasi Data Pajak</td>
+        </tr>
+        <tr>
+          <td>Anas Urbaningrum</td>
+          <td>Mantan Ketua Umum Partai Demokrat</td>
+          <td>54</td>
+          <td>Korupsi Dana Kampanye</td>
+        </tr>
+        <tr>
+          <td>Akil Mochtar</td>
+          <td>Mantan Ketua MK</td>
+          <td>62</td>
+          <td>Korupsi Kebijakan Hukum</td>
+        </tr>
+        <tr>
+          <td>Luthfi Hasan Ishaaq</td>
+          <td>Mantan Presiden PKS</td>
+          <td>61</td>
+          <td>Korupsi Dana Partai</td>
+        </tr>
+        <tr>
+          <td>M. Nazaruddin</td>
+          <td>Mantan Bendahara Partai Demokrat</td>
+          <td>45</td>
+          <td>Korupsi Dana Partai</td>
+        </tr>
+        <tr>
+          <td>Djoko Susilo</td>
+          <td>Mantan Irjen Polri</td>
+          <td>58</td>
+          <td>Korupsi Pengelolaan Keuangan</td>
+        </tr>
+        <tr>
+          <td>Angelina Sondakh</td>
+          <td>Mantan Anggota DPR RI</td>
+          <td>45</td>
+          <td>Korupsi Proyek Infrastruktur</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="index.html" class="btn btn-primary">Kembali ke Index</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-light py-3 border-top text-center">
+    <p class="mb-0">
+      &copy; 2025 - Dibuat oleh <strong>Ardika Oktavian</strong>.
+    </p>
+  </footer>
+
+  <!-- jQuery (dibutuhkan DataTables) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#myTable').DataTable();
+    });
+  </script>
+</body>
+</html>

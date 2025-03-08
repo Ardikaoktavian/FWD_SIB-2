@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right Sidebar</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <fieldset>
+        <legend><b>Materi Pembelajaran</b></legend>
+        <div id="video-container">
+            <iframe id="video-frame" width="100%" height="250px" 
+                src="https://www.youtube.com/embed/66UqjRZQVpM" 
+                frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+        <ul>
+            <li>
+                <a href="#" onclick="changeVideo('66UqjRZQVpM'); return false;">
+                    <img src="https://img.youtube.com/vi/66UqjRZQVpM/0.jpg" width="120px">
+                    HTML 1
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeVideo('gbFUWq2JVIU'); return false;">
+                    <img src="https://img.youtube.com/vi/gbFUWq2JVIU/0.jpg" width="120px">
+                    HTML 2
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeVideo('m8fiBQWVu2k'); return false;">
+                    <img src="https://img.youtube.com/vi/m8fiBQWVu2k/0.jpg" width="120px">
+                    P2 HTML (2)
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeVideo('mNlUOw13B-w'); return false;">
+                    <img src="https://img.youtube.com/vi/mNlUOw13B-w/0.jpg" width="120px">
+                    P2 HTML (3)
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="changeVideo('QTV-3Qmc-NU'); return false;">
+                    <img src="https://img.youtube.com/vi/QTV-3Qmc-NU/0.jpg" width="120px">
+                    P3 HTML (1)
+                </a>
+            </li>
+        </ul>
+    </fieldset>
+
+    <script>
+        function changeVideo(videoId) {
+            document.getElementById('video-frame').src = 'https://www.youtube.com/embed/' + videoId;
+        }
+    </script>
+</body>
+</html>

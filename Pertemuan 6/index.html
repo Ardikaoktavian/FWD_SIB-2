@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RWD - Pertemuan 6</title>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+<!-- HEADER (Carousel) -->
+<header class="container-fluid p-0">
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <!-- Indicators -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+      </div>
+  
+      <!-- Carousel Inner -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <!-- Gambar 1 dengan lebar penuh dan tinggi 400px -->
+          <img
+            src="./assets/images/carousel1.jpg"
+            class="d-block w-100"
+            alt="Slide 1"
+            style="height:400px; object-fit:cover;"
+          />
+        </div>
+        <div class="carousel-item">
+          <!-- Gambar 2 -->
+          <img
+            src="./assets/images/carousel2.jpg"
+            class="d-block w-100"
+            alt="Slide 2"
+            style="height:400px; object-fit:cover;"
+          />
+        </div>
+        <div class="carousel-item">
+          <!-- Gambar 3 -->
+          <img
+            src="./assets/images/carousel3.jpg"
+            class="d-block w-100"
+            alt="Slide 3"
+            style="height:400px; object-fit:cover;"
+          />
+        </div>
+      </div>
+  
+      <!-- Prev/Next controls -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#myCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+  
+
+  <!-- NAVIGATION MENU -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container">
+      <!-- Logo + Brand -->
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <!-- Ganti logo.png dengan gambar logo Anda -->
+        <img
+          src="./assets/images/logo nf.png"
+          alt="Logo"
+          width="40"
+          height="40"
+          class="me-2"
+        />
+        <strong>Sekolah Tinggi Teknologi Terpadu Nurul Fikri</strong>
+      </a>
+
+      <!-- Toggler for mobile -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Link Internal -->
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="study.html">MyStudy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="datatables.html">Datatable</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- END NAVIGATION MENU -->
+
+  <!-- MAIN LAYOUT (CONTENT KIRI + MAIN CONTENT) -->
+  <div class="container my-4">
+    <div class="row">
+      <!-- CONTENT (LEFT) -->
+      <aside class="col-md-3 mb-3">
+        <div class="p-3 border">
+          <h5>Link Eksternal</h5>
+          <ul class="list-unstyled">
+            <li><a href="https://nfacademy.id" target="_blank">nfacademy.id</a></li>
+            <li><a href="https://nurulfikri.ac.id" target="_blank">nurulfikri.ac.id</a></li>
+            <li><a href="https://siska.nurulfikri.ac.id" target="_blank">siska.nurulfikri.ac.id</a></li>
+            <li><a href="https://ais.nurulfikri.ac.id/" target="_blank">ais.nurulfikri.ac.id</a></li>
+            <li><a href="https://elena.nurulfikri.ac.id/" target="_blank">elena.nurulfikri.ac.id</a></li>
+            <li><a href="https://getbootstrap.com" target="_blank">Bootstrap</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT (RIGHT) -->
+      <section class="col-md-9">
+        <div class="p-3 border">
+          <h4>Ardika Oktavian - Fullstack Web Developer</h4>
+          <p>
+            Pertemuan ke 6 - RWD <i>(Responsive Web Design)</i>
+          </p>
+          <p>
+            RWD adalah teknik untuk membuat website agar tampil optimal di berbagai perangkat—mulai dari smartphone, 
+            tablet, laptop, hingga layar yang lebih besar—dengan memastikan tata letak dan elemen menyesuaikan diri secara proporsional.
+            <p>Teknik Utama dalam RWD meliputi:</p>
+            <ul>
+              <li>CCS Media Queries</li>
+              <li>Fluid Grid Layouts</li>
+              <li>Fluid Images</li>
+            </ul>
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- END MAIN LAYOUT -->
+
+  <!-- FOOTER -->
+  <footer class="bg-light py-3 border-top">
+    <div class="container text-center">
+      <p class="mb-0">
+        &copy; 2025 - Dibuat oleh <strong>Ardika Oktavian</strong>.
+      </p>
+      <p class="mb-0">
+        Temukan saya di:
+        <a href="https://www.linkedin.com/in/ardika-o-45b923252/" target="_blank">LinkedIn</a> |
+        <a href="https://www.instagram.com/pyrron.a/?hl=id" target="_blank">Instagram</a>
+      </p>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  ></script>
+</body>
+</html>

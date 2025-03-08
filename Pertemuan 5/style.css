@@ -1,0 +1,94 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Mengatur font dan background body */
+  body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    min-height: 100vh;
+  }
+  
+  /* Container utama dengan CSS Grid */
+  .container {
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "nav nav nav"
+      "left main right"
+      "footer footer footer";
+    /* Mengatur tinggi baris dan lebar kolom */
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    /* Ukuran maksimal agar layout tidak terlalu melebar, 
+       serta lebar responsif mengikuti layar */
+    width: 80%;
+    max-width: 1200px;
+    /* Jarak antar grid */
+    gap: 4px;
+  }
+  
+  /* Style umum untuk setiap bagian layout */
+  .header, .nav, .left-content, .main-content, .right-content, .footer {
+    border: 2px solid #000;  
+    color: green;          
+    display: flex;          
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    min-height: 60px;      
+  }
+  
+  /* Grid area assignment */
+  .header {
+    grid-area: header;
+  }
+  
+  .nav {
+    grid-area: nav;
+    min-height: 50px;
+  }
+  
+  .left-content {
+    grid-area: left;
+    min-height: 250px;
+  }
+  
+  .main-content {
+    grid-area: main;
+    min-height: 250px;
+  }
+  
+  .right-content {
+    grid-area: right;
+    min-height: 250px;
+  }
+  
+  .footer {
+    grid-area: footer;
+    min-height: 50px;
+  }
+  
+  /* Responsive: pada layar lebih kecil, layout menumpuk agar mudah dibaca */
+  @media (max-width: 768px) {
+    .container {
+      /* Ubah struktur grid menjadi satu kolom saat layar sempit */
+      grid-template-areas:
+        "header"
+        "nav"
+        "left"
+        "main"
+        "right"
+        "footer";
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+  }
+  
