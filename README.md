@@ -1,2 +1,3 @@
 # FWD_SIB-2
-Fullstack Web Developer - SIB Mandiri Batch 2
+
+Desain Web - Materi Pertama pada kelas Fullstack Web Developer
