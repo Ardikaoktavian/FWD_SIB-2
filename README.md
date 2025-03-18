@@ -3,8 +3,8 @@
 ✨ Apa yang akan dipelajari?
 
 
-✅ Soft Skills – Kuasai keterampilan komunikasi, teamwork, dan problem-solving.
 
+✅ Soft Skills – Kuasai keterampilan komunikasi, teamwork, dan problem-solving.
 ✅ Desain Web – Pelajari prinsip desain dan pengembangan tampilan website yang menarik.
 
 ✅ UI/UX – Buat pengalaman pengguna yang nyaman dan intuitif dengan pendekatan User Interface & User Experience terbaik.
