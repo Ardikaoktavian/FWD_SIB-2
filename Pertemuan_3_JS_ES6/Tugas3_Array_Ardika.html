@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko JS-ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FDFBEE;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background: #57B4BA;
+            color: white;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px;
+            border: none;
+            background: #3D8D7A;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #FFB433;
+        }
+        input {
+            margin: 5px;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Manajemen Pesanan Toko JS-ID</h2>
+        <table id="produkTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Gambar</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+        <h3>Tambah / Edit Produk</h3>
+        <input type="hidden" id="editId">
+        <input type="text" id="nama" placeholder="Nama Produk">
+        <input type="number" id="harga" placeholder="Harga">
+        <input type="number" id="stok" placeholder="Stok">
+        <input type="text" id="gambar" placeholder="URL Gambar">
+        <button onclick="simpanProduk()">Simpan Produk</button>
+    </div>
+
+    <script>
+        let produkToko = [
+            {id: 1, nama: "Laptop", harga: 7500000, stok: 5, gambar: "laptop.jpeg"},
+            {id: 2, nama: "Mouse", harga: 20000, stok: 10, gambar: "mouse.jpeg"},
+            {id: 3, nama: "Keyboard", harga: 350000, stok: 7, gambar: "keyboard.jpeg"},
+        ];
+
+        function tampilkanProduk() {
+            let tbody = document.querySelector("#produkTable tbody");
+            tbody.innerHTML = "";
+            produkToko.forEach(produk => {
+                let row = `<tr>
+                    <td>${produk.id}</td>
+                    <td><img src="${produk.gambar}" alt="${produk.nama}"></td>
+                    <td>${produk.nama}</td>
+                    <td>Rp${produk.harga.toLocaleString()}</td>
+                    <td>${produk.stok}</td>
+                    <td>
+                        <button onclick="editProduk(${produk.id})">Edit</button>
+                        <button onclick="hapusProduk(${produk.id})">Hapus</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function simpanProduk() {
+            let id = document.getElementById("editId").value;
+            let nama = document.getElementById("nama").value;
+            let harga = parseInt(document.getElementById("harga").value);
+            let stok = parseInt(document.getElementById("stok").value);
+            let gambar = document.getElementById("gambar").value || "https://via.placeholder.com/50";
+
+            if (nama && harga && stok) {
+                if (id) {
+                    let index = produkToko.findIndex(p => p.id == id);
+                    produkToko[index] = {id: parseInt(id), nama, harga, stok, gambar};
+                } else {
+                    let idBaru = produkToko.length > 0 ? produkToko[produkToko.length - 1].id + 1 : 1;
+                    produkToko.push({id: idBaru, nama, harga, stok, gambar});
+                }
+                resetForm();
+                tampilkanProduk();
+            } else {
+                alert("Silakan isi semua data produk.");
+            }
+        }
+
+        function editProduk(id) {
+            let produk = produkToko.find(p => p.id == id);
+            document.getElementById("editId").value = produk.id;
+            document.getElementById("nama").value = produk.nama;
+            document.getElementById("harga").value = produk.harga;
+            document.getElementById("stok").value = produk.stok;
+            document.getElementById("gambar").value = produk.gambar;
+        }
+
+        function hapusProduk(id) {
+            produkToko = produkToko.filter(produk => produk.id !== id);
+            tampilkanProduk();
+        }
+
+        function resetForm() {
+            document.getElementById("editId").value = "";
+            document.getElementById("nama").value = "";
+            document.getElementById("harga").value = "";
+            document.getElementById("stok").value = "";
+            document.getElementById("gambar").value = "";
+        }
+
+        tampilkanProduk();
+    </script>
+</body>
+</html>
