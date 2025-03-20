@@ -1,0 +1,133 @@
+<!-- /* File: index.html (Halaman Form Penyewaan dengan Edit Data) */ */ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Penyewaan Kendaraan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('./assets/transport-background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .radio-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .radio-item.selected {
+            background: #16C47F !important;
+            color: white;
+        }
+        img {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Penyewaan Kendaraan</h2>
+        <input type="hidden" id="editIndex" value="-1">
+        <input type="text" id="nama" placeholder="Nama Penyewa">
+        <input type="tel" id="nomorTelepon" placeholder="Nomor Telepon" maxlength="13">
+        <div class="radio-container">
+            <h3>Pilih Kendaraan</h3>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Honda CR-V')"><img src="./assets/cr-v.jpeg"> Honda CR-V</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Honda BR-V')"><img src="./assets/brv.jpeg"> Honda BR-V</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Honda HR-V')"><img src="./assets/hrv.jpeg"> Honda HR-V</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Forza')"><img src="./assets/forza.jpeg"> Forza 750</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Vario 160')"><img src="./assets/vario160.jpeg"> Vario 160</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Adv 160')"><img src="./assets/adv160.jpeg"> Adv 160</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Medium Bus')"><img src="./assets/mediumbus.png"> Medium Bus</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Big Bus')"><img src="./assets/bigbus.jpeg"> Big Bus</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Hiace Premio Standard')"><img src="./assets/HiacePremioStandard.jpeg"> Hiace Premio Standard</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Hiace Premio Luxury')"><img src="./assets/HiacePremioLuxury.jpeg"> Hiace Premio Luxury</div>
+            <div class="radio-item" onclick="pilihKendaraan(this, 'Toyota Alphard')"><img src="./assets/Toyota Alphard.jpeg"> Toyota Alphard</div>
+        </div>
+        <button onclick="simpanPelanggan()">Sewa Kendaraan</button>
+    </div>
+
+    <script>
+        let kendaraanTerpilih = "";
+        
+        function pilihKendaraan(element, namaKendaraan) {
+            kendaraanTerpilih = namaKendaraan;
+            document.querySelectorAll('.radio-item').forEach(item => item.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+        
+        function simpanPelanggan() {
+            let nama = document.getElementById("nama").value;
+            let nomorTelepon = document.getElementById("nomorTelepon").value;
+            let regexTelepon = /^\+?\d{10,13}$/;
+            let editIndex = document.getElementById("editIndex").value;
+            
+            if (!nama || !nomorTelepon || !kendaraanTerpilih) {
+                alert("Harap isi semua data dengan benar!");
+                return;
+            }
+            
+            if (!regexTelepon.test(nomorTelepon)) {
+                alert("Format nomor telepon tidak valid!");
+                return;
+            }
+            
+            let daftarPelanggan = JSON.parse(localStorage.getItem("daftarPelanggan")) || [];
+            
+            if (editIndex !== "-1") {
+                daftarPelanggan[editIndex] = { nama, nomorTelepon, kendaraan: kendaraanTerpilih };
+            } else {
+                daftarPelanggan.push({ nama, nomorTelepon, kendaraan: kendaraanTerpilih });
+            }
+            
+            localStorage.setItem("daftarPelanggan", JSON.stringify(daftarPelanggan));
+            localStorage.removeItem("editPelanggan");
+            window.location.href = "data.html";
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            let editData = JSON.parse(localStorage.getItem("editPelanggan"));
+            if (editData) {
+                document.getElementById("editIndex").value = editData.index;
+                document.getElementById("nama").value = editData.nama;
+                document.getElementById("nomorTelepon").value = editData.nomorTelepon;
+                kendaraanTerpilih = editData.kendaraan;
+                
+                document.querySelectorAll('.radio-item').forEach(item => {
+                    if (item.textContent.includes(kendaraanTerpilih)) {
+                        item.classList.add('selected');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
