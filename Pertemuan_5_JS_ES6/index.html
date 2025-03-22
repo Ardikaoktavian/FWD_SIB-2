@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Table Produk</title>
+    <script defer src="script.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+        .table-container {
+            overflow-x: auto;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+        table th, table td {
+            border: none;
+        }
+        table th {
+            position: sticky;
+            top: 0;
+            background-color: #4f46e5;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        table th:first-child {
+            border-top-left-radius: 0.5rem;
+        }
+        table th:last-child {
+            border-top-right-radius: 0.5rem;
+        }
+        table tr:last-child td:first-child {
+            border-bottom-left-radius: 0.5rem;
+        }
+        table tr:last-child td:last-child {
+            border-bottom-right-radius: 0.5rem;
+        }
+        table tr:nth-child(even) {
+            background-color: rgba(243, 244, 246, 0.7);
+        }
+        table tr:hover {
+            background-color: rgba(243, 244, 246, 1);
+        }
+        .btn {
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .form-input {
+            transition: all 0.2s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .form-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            outline: none;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .notification.success {
+            background-color: #10b981;
+        }
+        .notification.error {
+            background-color: #ef4444;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationMessage"></span>
+    </div>
+
+    <div class="max-w-6xl mx-auto glass-effect p-6 md:p-8 rounded-xl">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 flex items-center">
+                <i class="fas fa-box-open mr-3 text-indigo-600"></i>
+                Manajemen Produk
+            </h2>
+            <div class="bg-indigo-100 text-indigo-800 py-1 px-3 rounded-full text-sm font-medium">
+                <i class="fas fa-database mr-1"></i>
+                <span id="productCount">7</span> Produk
+            </div>
+        </div>
+
+        <div class="table-container mb-8">
+            <table class="w-full">
+                <thead>
+                    <tr>
+                        <th class="p-3 text-center w-16">#ID</th>
+                        <th class="p-3 text-left">Nama Produk</th>
+                        <th class="p-3 text-right">Harga</th>
+                        <th class="p-3 text-center w-40">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="produkTable"></tbody>
+            </table>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-4" id="formContainer">
+            <h3 class="text-lg font-semibold mb-4 text-gray-700" id="formTitle">Tambah Produk Baru</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="hidden" id="produkId">
+                <div>
+                    <label for="namaProduk" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
+                    <input type="text" id="namaProduk" placeholder="Masukkan nama produk" 
+                        class="form-input w-full p-2 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label for="hargaProduk" class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
+                    <input type="number" id="hargaProduk" placeholder="Masukkan harga" 
+                        class="form-input w-full p-2 rounded-lg focus:ring-2 focus:ring-indigo-500" maxlength="10">
+                </div>
+                <div class="flex items-end space-x-2">
+                    <button id="tambahProdukBtn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg flex-grow">
+                        <i class="fas fa-plus mr-2"></i>Tambah
+                    </button>
+                    <button id="updateProdukBtn" class="btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg flex-grow hidden">
+                        <i class="fas fa-save mr-2"></i>Update
+                    </button>
+                    <button id="cancelEditBtn" class="btn bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-lg hidden">
+                        <i class="fas fa-times mr-2"></i>Batal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Hapus -->
+    <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white p-6 rounded-xl shadow-lg max-w-md w-full mx-4 transform transition-all">
+            <div class="text-center mb-4">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-4">
+                    <i class="fas fa-trash-alt text-red-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Konfirmasi Hapus</h3>
+                <p class="text-gray-600">Apakah Anda yakin ingin menghapus produk ini? Tindakan ini tidak dapat dibatalkan.</p>
+            </div>
+            <div class="flex justify-end space-x-3 mt-6">
+                <button id="cancelDeleteBtn" class="btn px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300">
+                    <i class="fas fa-times mr-2"></i>Batal
+                </button>
+                <button id="confirmDeleteBtn" class="btn px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                    <i class="fas fa-trash-alt mr-2"></i>Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let produkList = [
+            { id: 1, nama: "Laptop", harga: 12000000 },
+            { id: 2, nama: "Smartphone", harga: 8000000 },
+            { id: 3, nama: "Tablet", harga: 7000000 },
+            { id: 4, nama: "Smartwatch", harga: 4000000 },
+            { id: 5, nama: "Headphone", harga: 2500000 },
+            { id: 6, nama: "Speaker Bluetooth", harga: 50000 },
+            { id: 7, nama: "Monitor Gaming", harga: 32000000 }
+        ];
+
+        let currentEditId = null;
+        let deleteProductId = null;
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+
+        function updateProductCount() {
+            document.getElementById("productCount").textContent = produkList.length;
+        }
+
+        function renderTable() {
+            const tableBody = document.getElementById("produkTable");
+            tableBody.innerHTML = "";
+            
+            if (produkList.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="p-4 text-center text-gray-500">
+                            <div class="flex flex-col items-center py-6">
+                                <i class="fas fa-box-open text-gray-300 text-5xl mb-3"></i>
+                                <p>Belum ada produk tersedia</p>
+                                <p class="text-sm">Tambahkan produk baru menggunakan form di bawah</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            produkList.forEach(({ id, nama, harga }) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td class='p-3 text-center'>
+                            <span class="badge bg-indigo-100 text-indigo-800">${id}</span>
+                        </td>
+                        <td class='p-3 font-medium'>${nama}</td>
+                        <td class='p-3 text-right font-medium'>${formatRupiah(harga)}</td>
+                        <td class='p-3 text-center'>
+                            <button onclick="editProduk(${id})" class="btn bg-amber-500 hover:bg-amber-600 text-white p-2 rounded-lg mr-1">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="showDeleteConfirmation(${id})" class="btn bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            updateProductCount();
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            
+            notification.className = 'notification';
+            notification.classList.add(type);
+            notificationMessage.textContent = message;
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Hide notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function tambahProduk() {
+            const nama = document.getElementById("namaProduk").value.trim();
+            const harga = document.getElementById("hargaProduk").value;
+            
+            if (!nama) {
+                showNotification("Nama produk tidak boleh kosong!", "error");
+                return;
+            }
+            
+            if (!harga || harga <= 0 || harga.length > 10) {
+                showNotification("Harga tidak valid! Pastikan harga lebih dari 0 dan tidak terlalu besar.", "error");
+                return;
+            }
+            
+            const id = produkList.length ? Math.max(...produkList.map(p => p.id)) + 1 : 1;
+            produkList.push({ id, nama, harga: parseInt(harga) });
+            resetForm();
+            renderTable();
+            
+            // Show success notification
+            showNotification("Produk berhasil ditambahkan!", "success");
+        }
+
+        function editProduk(id) {
+            const produk = produkList.find(p => p.id === id);
+            if (!produk) return;
+            
+            // Fill form with product data
+            document.getElementById("produkId").value = produk.id;
+            document.getElementById("namaProduk").value = produk.nama;
+            document.getElementById("hargaProduk").value = produk.harga;
+            
+            // Show update and cancel buttons, hide add button
+            document.getElementById("tambahProdukBtn").classList.add("hidden");
+            document.getElementById("updateProdukBtn").classList.remove("hidden");
+            document.getElementById("cancelEditBtn").classList.remove("hidden");
+            
+            currentEditId = id;
+        }
+
+        function updateProduk() {
+            const nama = document.getElementById("namaProduk").value;
+            const harga = document.getElementById("hargaProduk").value;
+            
+            if (!nama || !harga || harga.length > 10) {
+                alert("Nama tidak valid atau harga melebihi 10 karakter!");
+                return;
+            }
+            
+            const produkIndex = produkList.findIndex(p => p.id === currentEditId);
+            if (produkIndex !== -1) {
+                produkList[produkIndex].nama = nama;
+                produkList[produkIndex].harga = parseInt(harga);
+                resetForm();
+                renderTable();
+            }
+        }
+
+        function cancelEdit() {
+            resetForm();
+        }
+
+        function resetForm() {
+            document.getElementById("produkId").value = "";
+            document.getElementById("namaProduk").value = "";
+            document.getElementById("hargaProduk").value = "";
+            
+            // Show add button, hide update and cancel buttons
+            document.getElementById("tambahProdukBtn").classList.remove("hidden");
+            document.getElementById("updateProdukBtn").classList.add("hidden");
+            document.getElementById("cancelEditBtn").classList.add("hidden");
+            
+            currentEditId = null;
+        }
+
+        function showDeleteConfirmation(id) {
+            deleteProductId = id;
+            document.getElementById("deleteModal").classList.remove("hidden");
+        }
+
+        function hideDeleteConfirmation() {
+            document.getElementById("deleteModal").classList.add("hidden");
+            deleteProductId = null;
+        }
+
+        function hapusProduk() {
+            if (deleteProductId === null) return;
+            
+            produkList = produkList.filter(produk => produk.id !== deleteProductId);
+            hideDeleteConfirmation();
+            renderTable();
+        }
+
+        // Event Listeners
+        document.getElementById("tambahProdukBtn").addEventListener("click", tambahProduk);
+        document.getElementById("updateProdukBtn").addEventListener("click", updateProduk);
+        document.getElementById("cancelEditBtn").addEventListener("click", cancelEdit);
+        document.getElementById("confirmDeleteBtn").addEventListener("click", hapusProduk);
+        document.getElementById("cancelDeleteBtn").addEventListener("click", hideDeleteConfirmation);
+        
+        // Initialize
+        renderTable();
+    </script>
+</body>
+</html>
