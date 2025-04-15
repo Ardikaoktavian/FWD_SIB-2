@@ -123,6 +123,45 @@ const Book = () => {
     publishYear: "2023",
     pages: 468,
     language: "Indonesia"
+  },
+  {
+    id: 10,
+    title: "Positivity Power",
+    author: "R.D. Asti",
+    image: "https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/products/c05y2ttzyi.jpg",
+    description: "Pikiran lebih dari sekadar hasil dari kegiatan berpikir. Pikiran adalah hal yang menuntun kita dalam menjalani hidup dan mendefinisikan diri kita.",
+    price: "Rp 120.000",
+    buyLink: "https://www.gramedia.com/products/positivity-power",
+    detailedDescription: "Pikiran adalah alat yang ampuh untuk meraih kesuksesan. Jika kita percaya bahwa kita bisa sukses, kita seringnya akan berhasil. Sebaliknya, jika kita percaya bahwa kita tidak akan berhasil, maka kita seringnya gagal. Ini tidak berarti kita adalah makhluk yang bernubuat, ini hanya berarti bahwa kita mulai mempercayai apa yang berputar-putar di dalam kepala kita.",
+    publishYear: "2025",
+    pages: 200,
+    language: "Indonesia"
+  },
+  {
+    id: 11,
+    title: "Secrets of Divine Love: Sebuah Perjalanan Spiritual yang Mendalam tentang Islam",
+    author: "A. Helwa",
+    image: "https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/items/WhatsApp_Image_2022-01-06_at_08.45.44.png",
+    description: "Secrets of Divine Love: Sebuah Perjalanan Spiritual yang Mendalam tentang Islam ditulis untuk hati yang rindu, untuk orang yang mencari sesuatu yang belum bisa mereka temukan.",
+    price: "Rp 120.000",
+    buyLink: "https://www.gramedia.com/products/secrets-of-divine-love-sebuah-perjalanan-spiritual-yang-mendalam-tentang-islam-1",
+    detailedDescription: "Apakah Anda berada di jalan Islam atau hanya mencari untuk mengenal Tuhan, Secrets of Divine Love: Sebuah Perjalanan Spiritual yang Mendalam tentang Islam menggunakan bahasa spiritualitas untuk mengubah hubungan Anda dengan Tuhan, diri sendiri, dan dunia di sekitar Anda. Selain menawarkan perspektif yang tulus tentang teologi Islam, buku ini akan menuntun Anda melalui latihan praktis yang mengilhami cinta, memperkuat iman, dan meningkatkan ketergantungan pada keintiman dengan Tuhan. Dengan memanfaatkan kata-kata inspiratif Al-Qur`an dan Nabi Muhammad, menggali puisi spiritual, dan belajar melalui kisah-kisah dari guru spiritual terbesar di dunia, buku ini berupaya menghubungkan hati pembaca dengan Tuhan.",
+    publishYear: "2022",
+    pages: 440,
+    language: "Indonesia"
+  },
+  {
+    id: 12,
+    title: "Tenang, Kamu Cuma Cemas",
+    author: "Adi Riyadi",
+    image: "https://image.gramedia.net/rs:fit:0:0/plain/https://cdn.gramedia.com/uploads/product-metas/uzc11s7u9v.jpg",
+    description: "Overthingking sering kali membuatmu merasa terjebak dan tidak berdaya. Buku ini hadir untuk menemani keseharianmu, membantu memahami dan mengendalikan pikiran menjadi lebih tenang dan positif.",
+    price: "Rp 55.000",
+    buyLink: "https://www.gramedia.com/products/tenang-kamu-cuma-cemas",
+    detailedDescription: "Dari membaca sebelum tidur hingga menyempatkan waktu di pagi hari, kebiasaan membaca dapat dibentuk dengan konsistensi. Pilih buku sesuai minat dan level literasi. Mulailah dengan buku yang sesuai dengan keinginan dan kemampuan membaca. Temukan tempat yang tenang dan nyaman untuk membaca. Lampu yang cukup, kursi yang nyaman, dan sedikit musik pelataran bisa menciptakan pengalaman membaca yang lebih baik. Bergabunglah dalam kelompok membaca atau forum literasi. Diskusikan buku yang Anda baca dan dapatkan rekomendasi dari sesama pembaca. Buat catatan atau jurnal tentang buku yang telah Anda baca.",
+    publishYear: "2025",
+    pages: 248,
+    language: "Indonesia"
   }
 ];
 
