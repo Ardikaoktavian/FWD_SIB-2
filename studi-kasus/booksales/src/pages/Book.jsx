@@ -174,12 +174,7 @@ const Book = () => {
       <h2 className="text-center mb-5">All Books 📚</h2>
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {books.map((book) => (
-          <div
-            key={book.id}
-            className="col"
-            data-aos="fade-up"
-            data-aos-delay={book.id * 100}
-          >
+          <div key={book.id} className="col" data-aos="fade-up" data-aos-delay={book.id * 100} >
             <div className="card h-100 shadow-sm">
               <img
                 src={book.image}
