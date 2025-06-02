@@ -7,7 +7,7 @@ const Book = () => {
   const [selectedBook, setSelectedBook] = useState(null);
 
   const books = [
-    {
+  {
     id: 1,
     title: "Atomic Habits",
     author: "James Clear",
