@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getBooks } from "../../../_services/books";
+import { deleteBook, getBooks } from "../../../_services/books";
 import { getGenres } from "../../../_services/genres";
 import { getAuthors } from "../../../_services/authors";
 import { Link } from "react-router-dom";
@@ -38,6 +38,15 @@ export default function AdminBooks() {
 
   const toggleDropdown = (id) => {
     setOpenDropdownId(openDropdownId === id ? null : id);
+  };
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Apakah kamu yakin ingin menghapus buku ini?");
+
+    if (confirmDelete) {
+        await deleteBook(id);
+        setBooks(books.filter((book) => book.id !== id));
+      }
   };
 
   return (
@@ -146,7 +155,7 @@ export default function AdminBooks() {
                       </td>
                       <td className="px-4 py-3 flex items-center justify-end relative">
                         <button
-                          id={"dropdown-button-${book.id}"}
+                          id={`dropdown-button-${book.id}`}
                           onClick={() => toggleDropdown(book.id)}
                           className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                           type="button"
@@ -182,7 +191,7 @@ export default function AdminBooks() {
                             </ul>
                             <div className="py-1">
                               <button
-                                onClick={""}
+                                onClick={() => handleDelete(book.id)}
                                 className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                               >
                                 Delete

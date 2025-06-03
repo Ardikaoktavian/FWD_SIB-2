@@ -8,6 +8,8 @@ import AdminLayout from "../src/layouts/admin";
 import Dashboard from "./pages/admin";
 import AdminBooks from "./pages/admin/books";
 import BookCreate from "./pages/admin/books/create";
+import BookEdit from "./pages/admin/books/edit";
+import ShowBook from "./pages/public/books/show";
 
 function App() {
   return (
@@ -17,7 +19,10 @@ function App() {
           {/* Public */}
           <Route element={<PublicLayout />}>
             <Route index element={<Home />} />
-            <Route path="books" element={<Books />} />
+            <Route path="books"> 
+              <Route index element={<Books />} />
+              <Route path="show/:id" element={<ShowBook />} />
+            </Route>
           </Route>
 
           {/* Auth */}
@@ -31,6 +36,7 @@ function App() {
             <Route path="books">
               <Route index element={<AdminBooks />} />
               <Route path="create" element={<BookCreate />} />
+              <Route path="edit/:id" element={<BookEdit />} />
             </Route>
           </Route>
         </Routes>
