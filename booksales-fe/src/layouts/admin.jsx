@@ -10,15 +10,16 @@ export default function AdminLayout() {
   const decodedData = useDecodeToken(token);
 
   useEffect(() => {
-    if (!token || !decodedData || !decodedData.success) {
+    if (!token || !decodedData || !decodedData.success || !userInfo) {
       navigate("/login");
+      return;
     }
 
     const role = userInfo.role;
     if (role !== "admin" || !role) {
       navigate("/");
     }
-  }, [token, decodedData, navigate]);
+  }, [token, decodedData, navigate, userInfo]);
 
   const handleLogout = async () => {
     if (token) {

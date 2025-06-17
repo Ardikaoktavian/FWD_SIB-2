@@ -1,4 +1,4 @@
-import API from "../_api";
+import { API } from "../_api";
 import { useJwt } from "react-jwt";
 
 export const login = async ({ email, password }) => {
